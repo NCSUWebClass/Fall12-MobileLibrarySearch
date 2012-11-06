@@ -1,23 +1,4 @@
 <?php
-$page_title = "Books &amp; Media";
-require_once('../lib/page-header.php');
-require_once('../lib/header.php');
-?>
-<div data-role="content" class="noPaddingTop">
-<script src="email_form.js"  type="text/javascript"></script>
-<script type="text/javascript">
-	// scrolls for reveal text and email forms
-	$(function(){
- 		function scrollTo() {
- 			var offset = $(this).offset();
-			$.mobile.silentScroll(offset.top);
-      return false;
-		}
-		$("div#emailForm h3.ui-collapsible-heading").click(scrollTo);
-		$("div#textForm h3.ui-collapsible-heading").click(scrollTo);
-		});
-</script>
-<?php
 
 if($id) {
   // search_detail($id); 
@@ -100,47 +81,20 @@ if($id) {
 
 ?>
 
-<div class="textEmailForm">
-
-<div data-role="collapsible" id="emailForm" data-content-theme="d">
-<h3>Email this record</h3>
-  <form id="email-form" name="email-form" method="post" action="email.php">
-    <input type="hidden" name="erecord_id" id="erecord_id" value="<?php echo $id; ?>" />
-    <label for="email_to">Email address: </label>
-    <input autocapitalize="off" autocorrect="off" data-theme="d" class="emailforminput" type="email" size="20" name="email_to" id="email_to" title="Send an email" />
-    <input type="submit" value="Send" id="esubmit" title="Send" name="Send" onClick="_gaq.push(['_trackEvent', 'catalogDetail', 'email record']);" />
-  </form>
+<div>
+	$( "#popupPanel" ).on({
+		popupbeforeposition: function() {
+			var h = $( window ).height();
+			$( "#popupPanel" ).css( "height", h );
+		}
+        });
+	<a href="#popupPanel" data-rel="popup" data-transition="slide" data-position-to="window" data-role="button">Open panel</a>
+				
+	<div data-role="popup" id="popupPanel" data-corners="false" data-theme="none" data-shadow="false" data-tolerance="0,0">
+	
+	    <button data-theme="a" data-icon="back" data-mini="true">Back</button>
+	    <button data-theme="a" data-icon="grid" data-mini="true">Menu</button>
+	    <button data-theme="a" data-icon="search" data-mini="true">Search</button>
+		 
+	</div>
 </div>
-
-
-<div data-role="collapsible" id="textForm" data-content-theme="d">
-<h3>Text this record</h3>
-  <form id="text-form" name="text-form" method="post" action="email.php">
-    <input type="hidden" name="trecord_id" id="trecord_id" value="<?php echo $id; ?>" />
-    <label for="text_provider">Mobile provider: </label>
-    <select name="text_provider" id="text_provider">
-        <option selected="selected" value="none">Select provider...</option>
-        <option value="alltel">Alltel</option>
-        <option value="att">AT&amp;T</option>
-        <option value="cricket">Cricket</option>
-        <option value="nextel">Nextel</option>
-        <option value="sprint">Sprint</option>
-        <option value="tmobile">T-Mobile</option>
-        <option value="uscell">US Cellular</option>
-        <option value="verizon">Verizon</option>
-        <option value="virgin">Virgin Mobile</option>
-    </select>
-    <label for="phone_number">Phone number: </label>
-    <input autocapitalize="off" autocorrect="off" class="emailforminput" type="tel" data-theme="d"  size="15" name="phone_number" id="phone_number" title="Send a text" />
-    <input type="submit" value="Send" id="tsubmit" title="Send" name="Send" onClick="_gaq.push(['_trackEvent', 'catalogDetail', 'text record']);"/>
-  </form>
- </div>
-</div>
-
-<?php	
-}
-?>
-</div><!-- /content -->
-<?php
-require_once('../lib/footer.php');
-?>
