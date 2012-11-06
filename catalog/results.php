@@ -12,15 +12,6 @@ require_once('../lib/page-header.php');
 		setTimeout(function() { $.mobile.silentScroll(offset.top)},1000);
 		}
 	});
-	// Show review box
-	$(function(){
- 		function scrollTo() {
- 			var offset = $(this).offset();
-			$.mobile.silentScroll(offset.top);
-			return false;
-		}
-		//$("div#review h2.ui-collapsible-heading").click(scrollTo);
-	});
 </script>
 <?php
 require_once('../lib/header.php');
@@ -68,57 +59,18 @@ foreach($xml->item as $item) {
       }
   }
 
-  echo '<li>
-  <a id="item' . $i . '" style="white-space:normal;margin-left:0px" href="' . $_SERVER['SCRIPT_NAME'] . '?id=' . $id . '">';
-  if (strlen($isbn) > 1) {
-	echo '<img width="20" height="30" style="float:left"
-	src="http://www.syndetics.com/index.aspx?isbn=' . $isbn . '/MC.GIF&amp;client=ncstateu" alt="cover image"/>';
-  }
-  echo '<div><h3 style="white-space:normal;margin-top:0px; margin-left:10px">' . $title . '</h3>';
+  echo '<li><a id="item' . $i . '" style="white-space:normal" href="' . $_SERVER['SCRIPT_NAME'] . '?id=' . $id . '"><h3 class="notruncate">' . $title . '</h3>';
   if(count($available) == 0) {
     if (preg_match('/(journal|magazine)/i', $format)) {
-	echo '<h4><span style="white-space:normal;margin-top:0px;font-size: .9em;color: #627ba1;">See full record</span></h4>';
-    }
-    else {
-	echo '<h4><span style="white-space:normal;margin-top:0px;font-size: .9em;color: #627ba1;">Not available</span></h4>';
+	echo '<h4><span class="smallprint">See full record</span></h4>';
+    } else {
+	    echo '<h4><span class="smallprint">Not available</span></h4>';
     }
   }
   else {
-    echo '<h4><span style="white-space:normal;margin-top:0px;font-size: .9em;color: #627ba1;">' . count($available) . ' available</span></h4>';
+    echo '<h4><span class="smallprint">' . count($available) . ' available</span></h4>';
   }
-  echo '</div></a>';
- 
-  
-  //********************************************************
-  //REVIEW BOX: ISBN, AUTHOR, FORMAT, PUBLISH DATE AND COVER.
-  //********************************************************
-  echo'<div data-role="collapsible" data-content-theme="a" data-inline="true" data-mini="true">';
-	echo '<h6>Review</h6>';
-	echo '<div style="white-space:normal; font-size:0.8em;margin-top:0px;">';
-	      if (strlen($isbn) > 1) {
-		      echo '<div style="white-space:normal;float:left;margin-left:0px;"><img class="cover" width="60" height="90" 
-		      src="http://www.syndetics.com/index.aspx?isbn=' . $isbn . '/MC.GIF&amp;client=ncstateu" alt="book cover image"/></div>';
-	      }
-	      echo '<div>';
-		      if (strlen($isbn) > 1) {
-			      echo '<div><span class="isbn"><span class="label">ISBN:</span> <span class="value">' . $isbn . '</span></span></div>';
-		      }
-		      if($author != '') {
-			      echo '<div><span class="author"><span class="label">Author:</span> <span class="value">' . $author . '</span></span></div>';
-		      }
-		      echo '<div class="formatpubbox">';
-			      if($format != '') {
-				      echo '<div><span class="label">Format: </span> <span class="value">' . $format . '</span></div>';
-			      }
-			      if($pubDate != '') {
-				      echo '<div><span class="label">Published:</span> <span class="value">' . $pubDate . '</span></div>';
-			      }
-		      echo '</div>';
-	      echo '</div>';
-	echo '</div>';
-  echo '</div>';
-  //************************  
-  echo '</li>';
+  echo '</a></li>';
   echo "\n";
   $i++;
 }
@@ -133,7 +85,7 @@ if($n) {
   $url .= '&N=206422';
 }
 
-// HANDLE ITEMS DISPLAY PER PAGE, LOAD NEXT PAGES
+// TODO: Fix this
 
 if ($itemsPerPage <= $totalResults) {
   $newCount = $itemsPerPage + 20;

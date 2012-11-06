@@ -53,11 +53,6 @@ elseif ($id) {
   $xml = search_detail($id);
   require "details.php";
 }
-// Show review box for the item
-elseif ($review){
-  $xml = search_detail($review);
-  
-}
 // Show start page with message if there was an empty search
 elseif(!$query && !$id) {
   $no_query = True;
