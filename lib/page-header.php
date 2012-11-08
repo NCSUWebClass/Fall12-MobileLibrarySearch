@@ -6,6 +6,7 @@
   <meta charset="utf-8" /> 
   <meta name="format-detection" content="telephone=no" />
   <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=0">
+  <link rel="stylesheet" href="popup.css" type="text/css" />
   <? if ($_SERVER['SERVER_NAME'] == "webdev2.lib.ncsu.edu") {?>
   <link rel="apple-touch-icon-precomposed" sizes="57x57" href="http://webdev2.lib.ncsu.edu/m/lib/images/homescreen-icon-57x57.png" />
   <link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://webdev2.lib.ncsu.edu/m/lib/images/homescreen-icon-72x72.png" />
@@ -15,7 +16,7 @@
 	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://m.lib.ncsu.edu/lib/images/homescreen-icon-72x72.png" />
 	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://m.lib.ncsu.edu/lib/images/homescreen-icon-114x114.png" />
 	<? } ?>
-	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.0/jquery.mobile-1.0.min.css" />
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
   <? if ($_SERVER['SERVER_NAME'] == "webdev2.lib.ncsu.edu") {?>
   <link rel="stylesheet" href="http://webdev2.lib.ncsu.edu/m/lib/themes/ncsu-libraries-mobile-theme.min.css" />
   <link rel="stylesheet" href="http://webdev2.lib.ncsu.edu/m/lib/ncsu-libraries-mobile.css" type="text/css">
@@ -23,7 +24,7 @@
   <link rel="stylesheet" href="http://m.lib.ncsu.edu/lib/themes/ncsu-libraries-mobile-theme.min.css" />
   <link rel="stylesheet" href="http://m.lib.ncsu.edu/lib/ncsu-libraries-mobile.css" type="text/css">
 	<? } ?>
-	<script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
+	<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
 	<script>
 		$(document).bind("mobileinit", function(){
 			$.mobile.ajaxEnabled = false;
@@ -31,7 +32,7 @@
 			$.mobile.hashListeningEnabled = false;
 		});
 	</script>
-	<script src="http://code.jquery.com/mobile/1.0/jquery.mobile-1.0.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
 	<? if ($_SERVER['SERVER_NAME'] == "m.lib.ncsu.edu" or $_SERVER['SERVER_NAME'] == "www.lib.ncsu.edu") {?>
 	<script type="text/javascript">
 		var _gaq = _gaq || [];
