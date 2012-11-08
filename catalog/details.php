@@ -100,6 +100,8 @@ if($id) {
 
 ?>
 
+
+
 <div class="textEmailForm">
 
 <div data-role="collapsible" id="emailForm" data-content-theme="d">

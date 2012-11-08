@@ -27,7 +27,6 @@ require_once('../lib/header.php');
 	      <option value="Author">Author</option>
 	      <option value="Subject">Subject Heading</option>
 	      <option value="ISBN">ISBN</option>
-	      <option value="region">Region</option>
    </select>
 	</fieldset>
 
