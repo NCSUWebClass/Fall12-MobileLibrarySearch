@@ -1,9 +1,9 @@
 <div data-role="header"  data-position="fixed">
 	<div onclick="location.href='../index.php';" style="cursor: pointer; position: absolute; height: 41px; width: 70px;"></div>
 	<a href="../index.php" data-role="none"><img src="../lib/images/library-logo-subpage.png" class="subpageLogo" alt="NCSU Libraries Logo"></a>
-	
+
 <a href="#popupPanel" data-rel="popup" data-transition="slide"  data-role="button"  >Filter</a>
-			
+
 <div data-role="popup" id="popupPanel" data-corners="false" data-theme="a"  data-shadow="false" data-tolerance="0,0">
 
 <div class = "refine">
@@ -47,6 +47,6 @@ $(document).bind("mobileinit", function(){
   $.mobile.touchOverflowEnabled = true;
 });
 </script>
-	
+
 	<h1><?= truncate($page_title, 32) ?></h1>
 </div>
