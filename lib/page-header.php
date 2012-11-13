@@ -27,7 +27,7 @@
 	<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
 	<script>
 		$(document).bind("mobileinit", function(){
-			$.mobile.ajaxEnabled = false;
+			$.mobile.ajaxEnabled = true;
 			$.mobile.pushStateEnabled = false;
 			$.mobile.hashListeningEnabled = false;
 		});
