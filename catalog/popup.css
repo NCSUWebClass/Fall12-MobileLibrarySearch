@@ -1,7 +1,6 @@
 #popupPanel-popup {
     right: 0 !important;
     left: auto !important;
-	position: fixed;
 }
 #popupPanel {	
     width: 200px;
@@ -11,5 +10,5 @@
     margin: -1px 0;
 }
 #popupPanel .ui-btn {
-    margin: 2em 15px;
+    margin-bottom: 1em 15px;
 }

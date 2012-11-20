@@ -4,28 +4,31 @@
 
 <a href="#popupPanel" data-rel="popup" data-transition="slide"  data-role="button"  >Filter</a>
 
-<div data-role="popup" id="popupPanel" data-corners="false" data-theme="a"  data-shadow="false" data-tolerance="0,0">
+<div data-role="popup" id="popupPanel" data-corners="false" data-theme="a" data-overlay-theme="a"  data-shadow="false" data-tolerance="0,0">
 
 <div class = "refine">
 <form method="get">
-	<input type="search" id="query" name="query" value = "" data-theme="d" />
+
+	<input type="search" id="query" name="query" value = "" data-theme="b"/>
 	
 	<fieldset data-role="controlgroup">
-		<input type = "checkbox" name="N" id="checkbox-0" value = "206422" />
+		<input type = "checkbox" name="N" id="checkbox-0" value = "206422" data-theme="b"/>
 		<label for="checkbox-0">Available Items Only</label>
 	</fieldset>
 	
 	<fieldset data-role="controlgroup">
-		<select name="Ntk" id="Ntk">
+		<select name="Ntk" id="Ntk" data-theme="b">
+			<option data-placeholder="true" value="">Select a Filter</option>
 			<option value="Subject">Subject</option>
 			<option value="Genre">Genre</option>
 			<option value="ISBN">ISBN</option>
-			<option value="Region">Region</option>
+			<option value="Location">Library</option>
 			<option value="Author">Author</option>
+			<option value="Region">Region</option>
 		</select>
 	</fieldset>
 	
-	<input type="submit" name="search" value="Search" />
+	<input type="submit" name="filter" value="Go" data-inline="true" data-theme="b" data-icon="refresh" data-iconpos="right" />
 
 </form>
 </div>
