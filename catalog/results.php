@@ -12,22 +12,40 @@ require_once('../lib/page-header.php');
 		setTimeout(function() { $.mobile.silentScroll(offset.top)},1000);
 		}
 	});
-	//Auto-load
+	//Auto-load - work on DESKTOP
         $(function () {
 		var $win = $(window);
 		$win.scroll(function () {
 			if ($win.height() + $win.scrollTop() == $(document).height()) {
-				document.getElementById("getmore").click();
+				//document.getElementById("getmore").click();
 			}
 		});
         });
+	//Auto show/hide review box
+	//$('.reviewbox').each(function(index) {
+	//	var pos = $(this).position();
+	///	if(pos.top >= 10 && pos.top <= 60)
+	//		$(this).show(200);
+	//	else 
+	//		$(this).hide(600);	
+	//});
+	//window.onscroll = function () {
+		var scrollTop = $(window).scrollTop();
+		$('.reviewbox').each(function(index) {
+			var pos = $(this).position();
+			if (scrollTop < (pos.top +200) && (scrollTop > pos.top-200))
+				$(this).show();
+			else 
+				$(this).hide(); 
+		});
+	//}
 	//Show/hide review box
 	function showhide(divID) {
 		$('.reviewbox').each(function(index) {
 			if ($(this).attr("id") == divID)
-				$(this).show(200);
+				$(this).slideDown(100);
 			else 
-				$(this).hide(600);
+				$(this).slideUp(300);
 		});
 	}
 </script>
@@ -40,7 +58,11 @@ require_once('../lib/adv-header.php');
 	$itemsPerPage = $xml->searchInfo->itemsPerPage;
 	$totalResults = $xml->searchInfo->totalResults;
 	$count = $xml->searchInfo->count;
-	echo '<ul data-role="listview" class="results">';
+	echo '<style>
+	#my-wrapper {padding-top : 45px;}
+	#my-wrapper form {position :fixed;top:55px;width:100%;z-index:10;}</style>';
+	echo '<div id="my-wrapper">';
+	echo '<ul data-role="listview" data-filter="true" data-filter-placeholder="Refine results by (Title,ISBN,Author,Format,Published)" class="results">';
 	echo "\n";
 	$i = 1;
 	$reviewID = 0; //the id of the review box
@@ -74,25 +96,27 @@ require_once('../lib/adv-header.php');
 				$location = htmlspecialchars($holdingsItem->location);
 				}
 		}
-		echo '<li>
-		<a id="item' . $i . '" style="white-space:normal;margin-left:10px" href="' . $_SERVER['SCRIPT_NAME'] . '?id=' . $id . '">';
+		echo '<li data-icon="false" >';
+		echo '<a style="text-decoration:none; color:black" id="item' . $i . '" style="white-space:normal;margin-left:10px" href="' . $_SERVER['SCRIPT_NAME'] . '?id=' . $id . '">';
 		//assign id for the item
 		$reviewID = $reviewID +1;
-		if (strlen($isbn) > 1) {
-			echo '<img width="20" height="30" style="float:left"
-			src="http://www.syndetics.com/index.aspx?isbn=' . $isbn . '/MC.GIF&amp;client=ncstateu" alt="cover image"/>';
-		}
-		echo '<div><h5 style="white-space:0;margin-top:0px; margin-left:10px;font-size: 1em">' . $title . '</h5>';
+		//if (strlen($isbn) > 1) {
+		//	echo '<img width="20" height="30" style="float:left"
+		//	src="http://www.syndetics.com/index.aspx?isbn=' . $isbn . '/MC.GIF&amp;client=ncstateu" alt="cover image"/>';
+		//}
+		echo '<div>';
+		echo '<h5 style="white-space:0; margin-right:100; margin-top:0px;font-size: 1.1em">' . $title . '</h5>';
+		echo '<a style="white-space:0; font-size:1.1em;text-decoration:none; color:#627ba1" href="javascript:showhide('.$reviewID.');">     [Review]     </a>';
 		if(count($available) == 0) {
 			if (preg_match('/(journal|magazine)/i', $format)) 
 				echo '<span style="white-space:0;margin-top:0px;font-size: .6em;color: #627ba1;">See full record</span>';
 			else
-				echo '<span style="white-space:0;margin-top:0px;font-size: .6em;color: #627ba1;">Not available</span>';
+				echo '<span style="white-space:0;margin-top:0px;font-size: .6em;color: #627ba1;">[Not available]</span>';
 		}
 		else 
-			echo '<span style="white-space:0;margin-top:0px;font-size: .6em;color: #627ba1;">' . count($available) . ' available</span>';
-		echo '</div>';
-		echo '<div style="white-space:0; font-size:0.6em;margin-top:0px;"><a style="color:red" href="javascript:showhide('.$reviewID.');">Review</a></div></a>';
+			echo '<span style="white-space:0;margin-top:0px;font-size: .6em;color: #627ba1;">[' . count($available) . ' available]</span>';
+		echo '</div></span></a>';
+		
 	  //********************************************************
 	  //REVIEW BOX: ISBN, AUTHOR, FORMAT, PUBLISH DATE AND COVER.
 	  //********************************************************
@@ -104,13 +128,21 @@ require_once('../lib/adv-header.php');
 				echo '<div>';
 					if (strlen($isbn) > 1)
 						echo '<div><span class="isbn"><span class="label">. ISBN:</span> <span class="value">' . $isbn . '</span></span></div>';
+					else
+						echo '<div><span class="isbn"><span class="label">. ISBN:</span> <span class="value"> Unknown </span></span></div>';
 					if($author != '') 
 						echo '<div><span class="author"><span class="label">. Author:</span><span class="value">' . $author . '</span></span></div>';
+					else
+						echo '<div><span class="author"><span class="label">. Author:</span><span class="value"> Unknown </span></span></div>';
 					echo '<div class="formatpubbox">';
 						if($format != '') 
 							echo '<div><span class="label">. Format: </span> <span class="value">' . $format . '</span></div>';
+						else
+							echo '<div><span class="label">. Format: </span> <span class="value"> Unknown </span></div>';
 						if($pubDate != '') 
 							echo '<div><span class="label">. Published:</span> <span class="value">' . $pubDate . '</span></div>';
+						else
+							echo '<div><span class="label">. Published:</span> <span class="value"> Unknown </span></div>';
 						echo '</div>';
 				echo '</div>';
 			echo '</div>';
@@ -152,6 +184,7 @@ require_once('../lib/adv-header.php');
 	else 
 		echo '<li class="loadmore">1 to ' . $totalResults . ' of ' . $totalResults . '</li>';
 	echo '</ul>';
+	echo '</div>';//list div
 	?>
 </div><!-- /content -->
 <?php
