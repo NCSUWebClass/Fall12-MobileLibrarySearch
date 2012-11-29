@@ -30,6 +30,8 @@
 			$.mobile.ajaxEnabled = false;
 			$.mobile.pushStateEnabled = false;
 			$.mobile.hashListeningEnabled = false;
+			$.mobile.defaultPageTransition = "slide";
+			$.mobile.transitionFallbacks.[fade];
 		});
 	</script>
 	<script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
