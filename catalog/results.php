@@ -58,6 +58,7 @@ require_once('../lib/adv-header.php');
 	<?php
 	//Initialize the variables
 	search($query, $ntk, $n, $no, $count, $id);
+	
 	$itemsPerPage = $xml->searchInfo->itemsPerPage;
 	$totalResults = $xml->searchInfo->totalResults;
 	$count = $xml->searchInfo->count;
