@@ -1,4 +1,5 @@
 <?php
+//unset($_SESSION['n']);
 $page_title = "Books &amp; Media";
 require_once('../lib/page-header.php');
 require_once('../lib/header.php');

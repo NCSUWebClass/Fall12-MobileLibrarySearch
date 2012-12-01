@@ -13,11 +13,18 @@ if($ntk = $_REQUEST["Ntk"]) {
 } else {
   $ntk = "";
 }
+/*
 // if N = 206422, search for available items
 if($n = $_REQUEST["N"]) {
 } else {
   $n = "";
+}*/
+
+if($n = $_REQUEST["N"]) {
+} else {
+	$n = "";
 }
+
 // page number
 if($offset = $_REQUEST["offset"]) {
   $scroll_to_top = false;
@@ -51,6 +58,9 @@ if ($query) {
   }*/
 // If there are multiple results show results page
   else {
+	$_SESSION['query'] = $query;
+	$_SESSION['ntk'] = $ntk;
+	$_SESSION['n'] = urlencode($n);
     require "results.php";
   }
 }

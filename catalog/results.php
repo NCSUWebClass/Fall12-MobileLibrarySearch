@@ -54,23 +54,9 @@ require_once('../lib/adv-header.php');
 	//});
 </script>
 <?php
-//Initialize the variables
 	session_start();
 //Initialize the variables
-//	if(!isset($_SESSION['response']))
-//	{
-		search($query, $ntk, $n, $offset, $count, $id);
-//		echo "<h1>THE WORLD IS ROUND.</h1>";
-//	}
-//	else
-//	{
-		//$var = $_SESSION['response'];
-		//echo "<h3>$var</h3>";
-		//$temp = $_SESSION['response'];
-		//echo "hello blah blah" . "$temp";
-//		$xml = simplexml_load_string($temp);
-//		echo "<h1>HELLO WORLD</h1>";
-//	}
+	search($query, $ntk, $n, $offset, $count, $id);
 	$itemsPerPage = $xml->searchInfo->itemsPerPage;
 	$totalResults = $xml->searchInfo->totalResults;
 	$count        = $xml->searchInfo->count;
@@ -178,6 +164,9 @@ require_once('../lib/adv-header.php');
                 $url .= '&Ntk=' . $ntk;
             if($n) 
                 $url .= '&N=' .$n;
+			$t = urlencode($n);
+			
+			
             // HANDLE ITEMS DISPLAY PER PAGE, LOAD NEXT PAGES
             $loadedResults = $offset+ $itemsPerPage;
 			$page = $loadedResults/$itemsPerPage;
