@@ -1,12 +1,9 @@
 <?php
 session_start();
-
 $page_title = "Books &amp; Media";
 require_once('../lib/page-header.php');
+require_once('../lib/adv-header.php');
 ?>
-
-
-
 <script type="text/javascript" src="infinite_scroll.js"></script>
 <script type="text/javascript">
 	// checks for url hash and scrolls to matching anchor position...jquery mobile overrides browser native anchor behavior
@@ -37,9 +34,9 @@ require_once('../lib/page-header.php');
 	function showhide(divID) {
 		$('.reviewbox').each(function(index) {
 			if ($(this).attr("id") == divID)
-				$(this).slideDown(100);
+				$(this).show();
 			else 
-				$(this).slideUp(300);
+				$(this).hide();
 		});
 	}
 	//Endless scroll
@@ -57,15 +54,12 @@ require_once('../lib/page-header.php');
 	//});
 </script>
 <?php
-require_once('../lib/adv-header.php');
-?>
-<div data-role="content">
-	<?php
+//Initialize the variables
 	session_start();
-	//Initialize the variables
+//Initialize the variables
 //	if(!isset($_SESSION['response']))
 //	{
-		search($query, $ntk, $n, $no, $count, $id);
+		search($query, $ntk, $n, $offset, $count, $id);
 //		echo "<h1>THE WORLD IS ROUND.</h1>";
 //	}
 //	else
@@ -77,16 +71,19 @@ require_once('../lib/adv-header.php');
 //		$xml = simplexml_load_string($temp);
 //		echo "<h1>HELLO WORLD</h1>";
 //	}
-	
 	$itemsPerPage = $xml->searchInfo->itemsPerPage;
 	$totalResults = $xml->searchInfo->totalResults;
-	$count = $xml->searchInfo->count;
-	//Make the search bar always display.
-	echo '<style> #my-wrapper {padding-top : 45px;} #my-wrapper form {position :fixed;top:55px;width:100%;z-index:10;}</style>';
-	echo '<div id="my-wrapper">';
-	echo '<ul id ="list" data-role="listview" data-mini="true" data-filter="true" data-filter-theme="a" data-filter-placeholder="Quick search" class="results">';
-	$i = 1;
+	$count        = $xml->searchInfo->count;
+	$offset       = $xml->searchInfo->offset;
+	$pages        = ($totalResults-($totalResults%$itemsPerPage))/$itemsPerPage +1;
+	$i = 1;  //item index
 	$reviewID = 0; //the id of the review box
+?>
+<!--<style> #quicksearch {padding-top : 45px;} #quicksearch form {position :fixed;top:55px;width:100%;z-index:10;}</style>-->
+<div id="quicksearch">
+<div data-role="content">
+	<?php
+	echo '<ul id ="list" data-role="listview" data-mini="true" data-filter="true" data-filter-theme="a" data-filter-placeholder="Quick search" class="results">';
 	foreach($xml->item as $item) {
 		$catalogLink = htmlspecialchars($item->catalogLink);
 		$id = $item->attributes()->id;
@@ -124,16 +121,16 @@ require_once('../lib/adv-header.php');
 		//if (strlen($isbn) > 1) 
 		//	echo '<img width="20" height="30" style="float:left" src="http://www.syndetics.com/index.aspx?isbn=' . $isbn . '/MC.GIF&amp;client=ncstateu" alt="cover"/>';
 		echo '<div>';
-		echo '<h5 style="white-space:0; margin-right:100; margin-top:0px;font-size: 1.1em">' . $title . '</h5>';
-		echo '<a style="white-space:0; font-size:1.1em;text-decoration:none; color:#627ba1" href="javascript:showhide('.$reviewID.');">     [Review]     </a>';
+		echo '<h5 style="white-space:0; margin-right:100; margin-top:0px;font-size: 1.2em">' . $title . '</h5>';
+		echo '<a style="text-decoration:overline underline; font-size:1.1em;color:#627ba1" href="javascript:showhide('.$reviewID.');">Review</a>';
 		if(count($available) == 0) {
 			if (preg_match('/(journal|magazine)/i', $format)) 
-				echo '<span style="white-space:0;margin-top:0px;font-size: .6em;color: #627ba1;">[See full record]</span>';
+				echo '<span style="margin-top:0px;font-size: .6em;color: #627ba1;">&#160;&#160;&#160;&#160;&#160;See full record.</span>';
 			else
-				echo '<span style="white-space:0;margin-top:0px;font-size: .6em;color: #627ba1;">[Not available]</span>';
+				echo '<span style="margin-top:0px;font-size: .6em;color: #627ba1;">&#160;&#160;&#160;&#160;&#160;Not available.</span>';
 		}
 		else 
-			echo '<span style="white-space:0;margin-top:0px;font-size: .6em;color: #627ba1;">[' . count($available) . ' available]</span>';
+			echo '<span style="margin-top:0px;font-size: .6em;color: #627ba1;">&#160;&#160;&#160;&#160;&#160;' . count($available) . ' available.</span>';
 		echo '</div></span></a>';	
 	  //********************************************************
 	  //REVIEW BOX: ISBN, AUTHOR, FORMAT, PUBLISH DATE AND COVER.
@@ -174,42 +171,37 @@ require_once('../lib/adv-header.php');
 		$i++;
 	}
 	//GET THE CURRENT URL
-	$url = $_SERVER['SCRIPT_NAME'] . '?';
-	if($query) 
-		$url .= 'query=' . $query;
-	if($ntk) 
-		$url .= '&Ntk=' . $ntk;
-	if($n) 
-		$url .= '&N=' .$n;
-
-	// HANDLE ITEMS DISPLAY PER PAGE, LOAD NEXT PAGES
-
-	if ($itemsPerPage <= $totalResults) {
-		$newCount = $itemsPerPage + 30;
-		$jumpto = $itemsPerPage + 1;
-	}
-	else 
-		$jumpto = $itemsPerPage -29;
-	if($newCount > $totalResults)
-		$newCount = $totalResults;
-	$moreItems = $totalResults - $itemsPerPage;
-	if($moreItems < 30)
-		$numberMoreResults = $moreItems;
-	else 
-		$numberMoreResults = 30;
-	$url .= '&count=' . $newCount;
-	$url .= '#item' . $jumpto;
-
-	if($numberMoreResults > 0)
-		echo '<li><a id="getmore" target="_self" class="loadmore" href="' . htmlentities($url) . '" onClick="recordOutboundLink(this, \'catalogResults\', \'load more\'); return false;"><span class="bold">Load ' . $numberMoreResults . ' more results...</span><br />1 to ' . $itemsPerPage . ' of ' . $totalResults . '</a></li>';
-	else 
-		echo '<li class="loadmore">1 to ' . $totalResults . ' of ' . $totalResults . '</li>';
-	echo '</ul>';
-	echo '</div>';
+            $url = $_SERVER['SCRIPT_NAME'] . '?';
+            if($query) 
+                $url .= 'query=' . $query;
+            if($ntk) 
+                $url .= '&Ntk=' . $ntk;
+            if($n) 
+                $url .= '&N=' .$n;
+            // HANDLE ITEMS DISPLAY PER PAGE, LOAD NEXT PAGES
+            $loadedResults = $offset+ $itemsPerPage;
+			$page = $loadedResults/$itemsPerPage;
+            if($loadedResults > $totalResults)
+                $loadedResults = $totalResults;
+            $remainResults = $totalResults - $loadedResults;
+            //Do more search if there are still more results.
+            if($remainResults > 0) {
+                $offset = $offset + $itemsPerPage;
+                $url .= '&offset=' . $offset;
+            }
+            else 
+                echo '<li class="loadmore">Loaded ' . $loadedResults . ' of ' . $totalResults . '</li>';
 	?>
 </div><!-- /content -->
-
-<div id="footer" data-role="footer"><img src="../lib/images/library-logo-subpage.png" class="subpageLogo" alt="NCSU Libraries Logo"><h1>NCSU Mobile</h1></div><!-- /header -->
+</div>
+<?php
+echo '<div><a class="nextpage" id="nextpage" target="_self" href="' . htmlentities($url) . '" onClick="recordOutboundLink(this, \'catalogResults\', \'load more\'); return false;"><span style="text-align:center;font-size: 1em;line-height: 1em;">Load more...</span></a></div>';
+?>
+<div id="footer" data-role="footer">
+<img src="../lib/images/library-logo-subpage.png" class="subpageLogo" alt="NCSU Libraries Logo">
+<?php echo '<p style="text-align:center;font-size: 0.9em;line-height: 1em;">
+<span style="text-align:center;font-size: 0.9em;line-height: 1em;">Page: '.$page.' of '.$pages.' pages<br>Remaining: ' . $remainResults . ' of ' . $totalResults . ' results</span></p>';?>
+</div><!-- /footer -->
 <?php
 require_once('../lib/footer.php');
 ?>

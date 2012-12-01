@@ -12,5 +12,4 @@
 	$_SESSION['response'] = $response;
 	//echo "<h1>NEWRESULTS.PHP......</h1>";
 	header("Location: results.php");
-
 ?>

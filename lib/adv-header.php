@@ -1,4 +1,4 @@
-<script type="text/javascript" src="filter.js"></script>
+<script type="text/javascript" src="../lib/scripts/filter.js"></script>
 
 <div data-role="header"  data-position="fixed">
 	<div onclick="location.href='../index.php';" style="cursor: pointer; position: absolute; height: 41px; width: 70px;"></div>

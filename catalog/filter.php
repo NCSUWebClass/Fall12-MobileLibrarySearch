@@ -1,4 +1,4 @@
-<script type="text/javascript" src="filter.js"></script>
+<script type="text/javascript" src="../lib/scripts/filter.js"></script>
 <?php
 	session_start();
 	

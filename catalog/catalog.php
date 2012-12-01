@@ -1,13 +1,12 @@
 <?php
-session_start();
+
 require_once('../lib/query-functions.php');
 // Retrieves items based on search terms
-function search($query, $ntk, $n, $no, $count, $id) {
-  if(isset($_SESSION['response']))
-  {
-	$xml = simplexml_load_string($_SESSION['response']);
-	unset($_SESSION['response']);
-	return $xml;
+function search($query, $ntk, $n, $offset, $count, $id) {
+  if(isset($_SESSION['response'])){
+    $xml = simplexml_load_string($_SESSION['response']);
+    unset($_SESSION['response']);
+    return $xml;
   }
   $request = 'http://www.lib.ncsu.edu/catalogws/?view=full&service=search&live=true';
   if($query) {
@@ -20,11 +19,11 @@ function search($query, $ntk, $n, $no, $count, $id) {
   if($n) {
     $request .= '&N=' . $n;
   }
-  if($no) {
-    $request .= '&No=' . $no;
+  if($offset) {
+    $request .= '&offset=' . $offset;
   }
   if($count == '') {
-    $request .= '&count=300';
+    $request .= '&count=30';
   }
   elseif($count) {
     $request .= '&count=' . $count;
@@ -39,6 +38,7 @@ function search($query, $ntk, $n, $no, $count, $id) {
   curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
   curl_setopt($ch, CURLOPT_USERAGENT, "NCSU Libraries Mobilib2 Test");
   $response = curl_exec($ch);
+  $_SESSION['xml'] = $response;
   curl_close($ch);
   $xml = simplexml_load_string($response);
   $_SESSION['xml'] = $response;
