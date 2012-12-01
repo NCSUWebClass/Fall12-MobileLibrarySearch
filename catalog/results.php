@@ -1,6 +1,8 @@
 <?php
+session_start();
 $page_title = "Books &amp; Media";
 require_once('../lib/page-header.php');
+require_once('../lib/adv-header.php');
 ?>
 <script type="text/javascript" src="infinite_scroll.js"></script>
 <script type="text/javascript">
@@ -52,21 +54,20 @@ require_once('../lib/page-header.php');
 	//});
 </script>
 <?php
-require_once('../lib/adv-header.php');
-?>
-<!--<style> #quicksearch {padding-top : 45px;} #quicksearch form {position :fixed;top:55px;width:100%;z-index:10;}</style>-->
-<div id="quicksearch">
-<div data-role="content">
-	<?php
-	//Initialize the variables
+//Initialize the variables
 	search($query, $ntk, $n, $offset, $count, $id);
 	$itemsPerPage = $xml->searchInfo->itemsPerPage;
 	$totalResults = $xml->searchInfo->totalResults;
 	$count        = $xml->searchInfo->count;
 	$offset       = $xml->searchInfo->offset;
-        $pages        = $totalResults/$itemsPerPage;
+	$pages        = ($totalResults-($totalResults%$itemsPerPage))/$itemsPerPage +1;
 	$i = 1;  //item index
 	$reviewID = 0; //the id of the review box
+?>
+<!--<style> #quicksearch {padding-top : 45px;} #quicksearch form {position :fixed;top:55px;width:100%;z-index:10;}</style>-->
+<div id="quicksearch">
+<div data-role="content">
+	<?php
 	echo '<ul id ="list" data-role="listview" data-mini="true" data-filter="true" data-filter-theme="a" data-filter-placeholder="Quick search" class="results">';
 	foreach($xml->item as $item) {
 		$catalogLink = htmlspecialchars($item->catalogLink);
@@ -163,13 +164,14 @@ require_once('../lib/adv-header.php');
             if($n) 
                 $url .= '&N=' .$n;
             // HANDLE ITEMS DISPLAY PER PAGE, LOAD NEXT PAGES
-            $loadedResults = $offset+ 30;
+            $loadedResults = $offset+ $itemsPerPage;
+			$page = $loadedResults/$itemsPerPage;
             if($loadedResults > $totalResults)
                 $loadedResults = $totalResults;
             $remainResults = $totalResults - $loadedResults;
             //Do more search if there are still more results.
             if($remainResults > 0) {
-                $offset = $offset + 30;
+                $offset = $offset + $itemsPerPage;
                 $url .= '&offset=' . $offset;
             }
             else 
@@ -183,7 +185,7 @@ echo '<div><a class="nextpage" id="nextpage" target="_self" href="' . htmlentiti
 <div id="footer" data-role="footer">
 <img src="../lib/images/library-logo-subpage.png" class="subpageLogo" alt="NCSU Libraries Logo">
 <?php echo '<p style="text-align:center;font-size: 0.9em;line-height: 1em;">
-<span style="text-align:center;font-size: 0.9em;line-height: 1em;">Remaining: ' . $remainResults . ' of ' . $totalResults . ' results</span></p>';?>
+<span style="text-align:center;font-size: 0.9em;line-height: 1em;">Page: '.$page.' of '.$pages.' pages<br>Remaining: ' . $remainResults . ' of ' . $totalResults . ' results</span></p>';?>
 </div><!-- /footer -->
 <?php
 require_once('../lib/footer.php');

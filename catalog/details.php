@@ -4,7 +4,7 @@ require_once('../lib/page-header.php');
 require_once('../lib/sub-header.php');
 ?>
 <div data-role="content" class="noPaddingTop">
-<script src="../lib/script/email_form.js"  type="text/javascript"></script>
+<script src="../lib/scripts/email_form.js"  type="text/javascript"></script>
 <script type="text/javascript">
 	// scrolls for reveal text and email forms
 	$(function(){
