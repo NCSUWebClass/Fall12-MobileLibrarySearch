@@ -1,4 +1,4 @@
-<script type="text/javascript" src="../lib/scripts/filter.js"></script>
+<script type="text/javascript" src="filter.js"></script>
 <?php
 	session_start();
 	
@@ -36,7 +36,6 @@
 				{
 					$href = $value->attributes()->href;
 					//change buttons back to div's
-					echo "<p>'.$href.'</p>";
 					echo "<button onclick='newResults(\"$href\")'> $value->title ($value->count)</button>";
 				}
 				echo "<div id='filler'></div>";
