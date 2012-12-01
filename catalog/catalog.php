@@ -2,7 +2,7 @@
 
 require_once('../lib/query-functions.php');
 // Retrieves items based on search terms
-function search($query, $ntk, $n, $no, $count, $id) {
+function search($query, $ntk, $n, $offset, $count, $id) {
   $request = 'http://www.lib.ncsu.edu/catalogws/?view=full&service=search&live=true';
   if($query) {
     $clear_query = sanitize_query($query);
@@ -14,11 +14,11 @@ function search($query, $ntk, $n, $no, $count, $id) {
   if($n) {
     $request .= '&N=' . $n;
   }
-  if($no) {
-    $request .= '&No=' . $no;
+  if($offset) {
+    $request .= '&offset=' . $offset;
   }
   if($count == '') {
-    $request .= '&count=300';
+    $request .= '&count=30';
   }
   elseif($count) {
     $request .= '&count=' . $count;
