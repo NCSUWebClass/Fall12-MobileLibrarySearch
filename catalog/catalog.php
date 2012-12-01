@@ -1,8 +1,14 @@
 <?php
-
+session_start();
 require_once('../lib/query-functions.php');
 // Retrieves items based on search terms
-function search($query, $ntk, $n, $offset, $count, $id) {
+function search($query, $ntk, $n, $no, $count, $id) {
+  if(isset($_SESSION['response']))
+  {
+	$xml = simplexml_load_string($_SESSION['response']);
+	unset($_SESSION['response']);
+	return $xml;
+  }
   $request = 'http://www.lib.ncsu.edu/catalogws/?view=full&service=search&live=true';
   if($query) {
     $clear_query = sanitize_query($query);
@@ -14,11 +20,11 @@ function search($query, $ntk, $n, $offset, $count, $id) {
   if($n) {
     $request .= '&N=' . $n;
   }
-  if($offset) {
-    $request .= '&offset=' . $offset;
+  if($no) {
+    $request .= '&No=' . $no;
   }
   if($count == '') {
-    $request .= '&count=30';
+    $request .= '&count=300';
   }
   elseif($count) {
     $request .= '&count=' . $count;
@@ -35,6 +41,7 @@ function search($query, $ntk, $n, $offset, $count, $id) {
   $response = curl_exec($ch);
   curl_close($ch);
   $xml = simplexml_load_string($response);
+  $_SESSION['xml'] = $response;
   return $xml;
 }
 

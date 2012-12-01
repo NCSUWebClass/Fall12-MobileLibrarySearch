@@ -1,5 +1,6 @@
 <?php
-
+session_start();
+	
 require "catalog.php";
 
 $scroll_to_top = true;
@@ -19,10 +20,10 @@ if($n = $_REQUEST["N"]) {
   $n = "";
 }
 // page number
-if($offset = $_REQUEST["offset"]) {
+if($no = $_REQUEST["No"]) {
   $scroll_to_top = false;
 } else {
-  $offset = "";
+  $no = "";
 }
 if($count = $_REQUEST["count"]) {
     $scroll_to_top = false;
@@ -35,7 +36,8 @@ if($id = $_REQUEST["id"]) {
 }
 
 if ($query) {
-  $xml = search($query, $ntk, $n, $offset, $count, $id);
+  $xml = search($query, $ntk, $n, $no, $count, $id);
+
   $resultcount = $xml->searchInfo->totalResults;
 // If there are no results, show starting page
   if($resultcount==0) {
