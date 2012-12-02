@@ -9,12 +9,8 @@
    $page         = 1;
    $i            = 1;  //item index
    $reviewID     = 0; //the id of the review box
-   //GET THE CURRENT SEARCH XML
-   function getXML($url) {
-      
-   }
-   //GET THE CURRENT URL***************************************************************
-   function getURL($query,$ntk,$n) {
+   //GET THE CURRENT INFORMATION***************************************************************
+   function load($query, $ntk, $n, $offset, $count, $id, $xml) {
       global $totalResults,$itemsPerPage, $page, $remainResults, $offset;
       $url = $_SERVER['SCRIPT_NAME'] . '?';
       $url .= 'query=' . $query;
@@ -31,6 +27,9 @@
          $offset = $offset + $itemsPerPage;
          $url .= '&offset=' . $offset;
       }
+   //GET,READ AND DISPLAY XML
+      readXML($xml);
+      $xml = search($query, $ntk, $n, $offset, $count, $id);
       return $url;
    }
    //Translate XML items to listview items*********************************************

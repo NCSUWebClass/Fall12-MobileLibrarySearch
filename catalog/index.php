@@ -71,13 +71,10 @@ if ($query) {
     //creating a content holder
     echo '<div id="quicksearch" data-role="content"><ul id ="results" data-role="listview" data-filter="true" data-filter-theme="a" data-filter-placeholder="Search content" class="results">';
     //load the content of the first page
-      readXML($xml);
-      $url =getURL($query,$ntk,$n);
+      $url = load($query, $ntk, $n, $offset, $count, $id, $xml);
     //load more content
       //if($_POST['submit']) {
-      //$xml = search($query, $ntk, $n, $offset, $count, $id);
-      //readXML($xml);
-      //$url =getURL($query,$ntk,$n);
+      $url = load($query, $ntk, $n, $offset, $count, $id, $xml);
       //}
     echo '</ul></div>';
     //link to load more content

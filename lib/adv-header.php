@@ -32,7 +32,7 @@
 	<!--
 	<input type="submit" name="submit" value="submit" data-inline="true" data-theme="b"  data-iconpos="right" />
 	-->
-	<div class="line-separator"></div>
+	<!--<div class="line-separator"></div>-->
 	
 	<div id="filterInfo"></div>
 	
