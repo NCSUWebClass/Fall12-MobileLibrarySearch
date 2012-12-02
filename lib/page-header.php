@@ -7,6 +7,8 @@
   <meta name="format-detection" content="telephone=no" />
   <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=0">
   <link rel="stylesheet" href="../lib/css/popup.css" type="text/css" />
+  <script type="text/javascript" src="../lib/scripts/results.js"></script>
+  <!--<style> #quicksearch {padding-top : 45px;} #quicksearch form {position :fixed;top:55px;width:100%;z-index:10;}</style> //always show search bar-->
   <? if ($_SERVER['SERVER_NAME'] == "webdev2.lib.ncsu.edu") {?>
   <link rel="apple-touch-icon-precomposed" sizes="57x57" href="http://webdev2.lib.ncsu.edu/m/lib/images/homescreen-icon-57x57.png" />
   <link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://webdev2.lib.ncsu.edu/m/lib/images/homescreen-icon-72x72.png" />

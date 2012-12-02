@@ -18,8 +18,8 @@
 		<label for="checkbox-0">Available Items Only</label>
 	</fieldset> -->
 	
-	<fieldset data-role="controlgroup">
-		<select name="filter" id="filter" data-theme="b" onchange="showFilter(this.value)">
+	<fieldset data-role="controlgroup" data-mini="true">
+		<select name="filter" id="filter" data-theme="a" onchange="showFilter(this.value)">
 			<option data-placeholder="true" value="">Select a Filter</option>
 			<option value="topic">Subject</option>
 			<option value="genre">Genre</option>
