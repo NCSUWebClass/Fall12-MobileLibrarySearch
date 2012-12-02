@@ -68,17 +68,31 @@ if ($query) {
     require_once('../lib/page-header.php');
     require_once('../lib/adv-header.php');
     require_once('result-functions.php');
+          ?>
+      <!--<script type="text/javascript">
+      var i = 0;
+      $(document).bind("ready", function(){
+	for(; i<10; i++)
+		$("#list").append($("echo'<li>x<br></li>';"));
+	$("#list").listview('refresh');
+	$('#footer').waypoint(function (a, b) {
+	        alert('de');
+		$("#list").append($("echo'<li>x<br></li>';"));
+		$("#list").listview('refresh');
+		$('#footer').waypoint({ offset:'100%'});
+	}, { offset:'100%'});
+      });
+      </script>-->
+      <?php
     //creating a content holder
-    echo '<div id="quicksearch" data-role="content"><ul id ="results" data-role="listview" data-filter="true" data-filter-theme="a" data-filter-placeholder="Search content" class="results">';
+    echo '<div id="content" data-role="content"><ul id ="list" data-role="listview" data-filter="true" data-filter-theme="a" data-filter-placeholder="Search content" class="results">';
     //load the content of the first page
       $url = load($query, $ntk, $n, $offset, $count, $id, $xml);
     //load more content
-      //if($_POST['submit']) {
-      $url = load($query, $ntk, $n, $offset, $count, $id, $xml);
-      //}
+      //$url = load($query, $ntk, $n, $offset, $count, $id, $xml);
     echo '</ul></div>';
     //link to load more content
-    echo '<a name="nextpage" class="nextpage" id="nextpage" target="_self" href="' . htmlentities($url) . '" onClick="recordOutboundLink(this, \'catalogResults\', \'load more\'); return false;"><span style="text-align:center;font-size: 1.1em;line-height: 1em;">Load more...</span></a>';
+    echo '<div id="loader"><a name="nextpage" class="nextpage" id="nextpage" target="_self" href="' . htmlentities($url) . '" onClick="recordOutboundLink(this, \'catalogResults\', \'load more\'); return false;"><span style="text-align:center;font-size: 1.1em;line-height: 1em;">Load more...</span></a></div>';
     require_once('../lib/result-footer.php');
     require_once('../lib/footer.php');
   }
