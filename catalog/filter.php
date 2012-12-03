@@ -11,7 +11,7 @@
 			$cat = $facet->attributes()->id; //category
 			if(strcmp($cat,$filter) == 0) //if category == chosen filter
 			{
-				echo '<div style="width:195px;height:250px;line-height:1.5em;overflow:auto;padding:0px;background-color:white;color:black;border:4px double red;">';
+				echo '<div style="width:195px;line-height:1.5em;overflow:auto;padding:0px;background-color:white;color:black;border:4px double red;">';
 				foreach($facet->value as $value)
 				{
 					$href = $value->attributes()->href;

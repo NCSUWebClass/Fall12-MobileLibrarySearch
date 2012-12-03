@@ -30,11 +30,11 @@
 	<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
 	<script>
 		$(document).bind("mobileinit", function(){
-			$.mobile.ajaxEnabled = true;
+			$.mobile.ajaxEnabled = false;
 			$.mobile.pushStateEnabled = false;
 			$.mobile.hashListeningEnabled = false;
-			$.mobile.defaultPageTransition = "slide";
-			$.mobile.transitionFallbacks.[fade];
+			$.mobile.defaultPageTransition = "slidefade";
+			$.mobile.pageLoadErrorMessage = 'Loading....';
 		});
 	</script>
 	<script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>

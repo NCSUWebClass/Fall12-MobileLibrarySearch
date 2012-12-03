@@ -1,14 +1,5 @@
 <?php
-   //INITIALIZE VARIABLES***************************************************************
-   $itemsPerPage = $xml->searchInfo->itemsPerPage;
-   $totalResults = $xml->searchInfo->totalResults;
-   $count        = $xml->searchInfo->count;
-   $offset       = $xml->searchInfo->offset;
-   $pages        = ($totalResults-($totalResults%$itemsPerPage))/$itemsPerPage +1;//total pages
-   $remainResults= 'Unknown';
-   $page         = 1;
-   $i            = 1;  //item index
-   $reviewID     = 0; //the id of the review box
+
    //GET THE CURRENT INFORMATION***************************************************************
    function load($query, $ntk, $n, $offset, $count, $id, $xml) {
       global $totalResults,$itemsPerPage, $page, $remainResults, $offset;
@@ -27,6 +18,8 @@
          $offset = $offset + $itemsPerPage;
          $url .= '&offset=' . $offset;
       }
+      else 
+	 $url = null;
    //GET,READ AND DISPLAY XML
       readXML($xml);
       $xml = search($query, $ntk, $n, $offset, $count, $id);
@@ -65,8 +58,8 @@
 	       }
 	    }
 	    //APPEND BOOK ITEM AS A LIST ITEM
-	    echo '<li data-icon="false" >';
-	    echo '<a style="text-decoration:none; color:black" id="item' . $i . '" style="white-space:normal;margin-left:10px" href="' . $_SERVER['SCRIPT_NAME'] . '?id=' . $id . '">';
+	    echo '<li class="items ui-btn ui-btn-icon-right ui-li ui-li-last ui-btn-up-a" data-icon="false" data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="div" data-iconpos="right" data-theme="a">';
+	    echo '<a data-transition="slide" style="text-decoration:none; color:black" id="item' . $i . '" style="white-space:normal;margin-left:10px" href="' . $_SERVER['SCRIPT_NAME'] . '?id=' . $id . '">';
 	    //assign id for the item
 	       $reviewID = $reviewID +1;
 	    //if (strlen($isbn) > 1) 
@@ -82,7 +75,7 @@
 	       }
 	       else 
 		  echo '<span style="margin-top:0px;font-size: .6em;color: #627ba1;">&#160;&#160;&#160;&#160;&#160;' . count($available) . ' available.</span>';
-	       echo '</div></span></a>';	
+	       echo '</div></a>';	
 	       //********************************************************
 	       //REVIEW BOX: ISBN, AUTHOR, FORMAT, PUBLISH DATE AND COVER.
 	       //********************************************************

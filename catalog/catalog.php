@@ -18,7 +18,7 @@ function search($query, $ntk, $n, $offset, $count, $id) {
     $request .= '&offset=' . $offset;
   }
   if($count == '') {
-    $request .= '&count=50';
+    $request .= '&count=30';
   }
   elseif($count) {
     $request .= '&count=' . $count;

@@ -63,38 +63,46 @@ if ($query) {
     $_SESSION['query'] = $query;
     $_SESSION['ntk'] = $ntk;
     $_SESSION['n'] = urlencode($n);
+    //INITIALIZE VARIABLES***************************************************************
+    $itemsPerPage = $xml->searchInfo->itemsPerPage;
+    $totalResults = $xml->searchInfo->totalResults;
+    $count        = $xml->searchInfo->count;
+    $offset       = $xml->searchInfo->offset;
+    $pages        = ($totalResults-($totalResults%$itemsPerPage))/$itemsPerPage +1;//total pages
+    $remainResults= 'Unknown';
+    $page         = 1;
+    $i            = 1;  //item index
+    $reviewID     = 0; //the id of the review box
     session_start();
     $page_title = "Books &amp; Media";
     require_once('../lib/page-header.php');
     require_once('../lib/adv-header.php');
     require_once('result-functions.php');
           ?>
-      <!--<script type="text/javascript">
-      var i = 0;
-      $(document).bind("ready", function(){
-	for(; i<10; i++)
-		$("#list").append($("echo'<li>x<br></li>';"));
-	$("#list").listview('refresh');
-	$('#footer').waypoint(function (a, b) {
-	        alert('de');
-		$("#list").append($("echo'<li>x<br></li>';"));
-		$("#list").listview('refresh');
-		$('#footer').waypoint({ offset:'100%'});
-	}, { offset:'100%'});
+    <script type="text/javascript" src="../lib/scripts/jquery.ias.js"></script>	  
+    <script type="text/javascript">
+      jQuery.ias({
+	container : '#content',
+	item: '.items',
+	pagination: '#loader',
+	next: '.nextpage',
+	loader: '<img src="../lib/images/loader.gif"/>'
       });
-      </script>-->
+    </script>
       <?php
     //creating a content holder
-    echo '<div id="content" data-role="content"><ul id ="list" data-role="listview" data-filter="true" data-filter-theme="a" data-filter-placeholder="Search content" class="results">';
+    echo '<div id="content" class="content" data-role="content"><ul id ="list" data-role="listview" data-filter="true" data-filter-theme="a" data-filter-placeholder="Search content" class="results">';
     //load the content of the first page
       $url = load($query, $ntk, $n, $offset, $count, $id, $xml);
     //load more content
       //$url = load($query, $ntk, $n, $offset, $count, $id, $xml);
     echo '</ul></div>';
     //link to load more content
+    if($url!=null)
     echo '<div id="loader"><a name="nextpage" class="nextpage" id="nextpage" target="_self" href="' . htmlentities($url) . '" onClick="recordOutboundLink(this, \'catalogResults\', \'load more\'); return false;"><span style="text-align:center;font-size: 1.1em;line-height: 1em;">Load more...</span></a></div>';
     require_once('../lib/result-footer.php');
     require_once('../lib/footer.php');
+
   }
 //*********************************************************************
 }
