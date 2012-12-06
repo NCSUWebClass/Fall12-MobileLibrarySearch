@@ -34,7 +34,8 @@
 			$.mobile.pushStateEnabled = false;
 			$.mobile.hashListeningEnabled = false;
 			$.mobile.defaultPageTransition = "slidefade";
-			$.mobile.pageLoadErrorMessage = 'Loading....';
+			$.mobile.pageLoadErrorMessage = "Loading....";
+			$.mobile.transitionFallbacks.fade = true;
 		});
 	</script>
 	<script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
