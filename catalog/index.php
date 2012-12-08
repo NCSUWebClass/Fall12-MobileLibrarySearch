@@ -86,7 +86,12 @@ if ($query) {
 	item: '.items',
 	pagination: '#loader',
 	next: '.nextpage',
-	loader: '<img src="../lib/images/loader.gif"/>'
+	loader: '<img src="../lib/images/loader.gif"/>',
+  onLoadItems: function(items) {
+    var o = $("#num-items");
+    var cur = Number(o.html());
+    o.html(cur + items.length);
+  }
       });
     </script>
       <?php
