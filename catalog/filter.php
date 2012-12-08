@@ -3,7 +3,7 @@
 	session_start();
 	$xml = simplexml_load_string($_SESSION['xml']);
 	$filter = $_GET['filter'];
-	echo '<h3 style="text-decoration:overline underline; font-size:1.3em;color:red">Select a sub-filter:</h3>';
+	echo '<h3 style="font-size:1.3em;color:white;margin:15px 5px">Select a sub-filter:</h3>';
 	if(isset($filter) && isset($xml))
 	{
 		foreach($xml->facet as $facet)
