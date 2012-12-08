@@ -12,16 +12,11 @@
 #popupPanel .ui-btn {
     margin-bottom: 1em 15px;
 }
-
 .line-separator{
-
 height:2px;
-
 background:#0055ff;
-
 border-top:1px solid #EEEEEE;
 border-bottom:1px solid #EEEEEE;
-
 }
 
 #scroll-top {position: fixed; bottom: 5px; right: 10px; display: block; z-index: 20;}
