@@ -8,36 +8,25 @@
 
 <div data-role="popup" id="popupPanel" data-corners="false" data-theme="a" data-overlay-theme="a"  data-shadow="false" data-tolerance="0,0">
 
-<div class = "refine">
-<form method="get">
+<div class="refine">
 
-	<!--<input type="search" id="query" name="query" value = "" data-theme="b"/> 
+	<div id="appliedFilterInfo"></div>
 	
-	<fieldset data-role="controlgroup">
-		<input type = "checkbox" name="N" id="checkbox-0" value = "206422" data-theme="b"/>
-		<label for="checkbox-0">Available Items Only</label>
-	</fieldset> -->
+	<form method="get">		
+		<fieldset data-role="controlgroup" data-mini="true">
+		
+			<button type="button" onclick="showFilter(this.value)" value="topic">Subject</button>
+			<button type="button" onclick="showFilter(this.value)" value="genre">Genre</button>
+			<button type="button" onclick="showFilter(this.value)" value="lc_class">Call Num. Location</button>
+			<button type="button" onclick="showFilter(this.value)" value="library">Library</button>
+			<button type="button" onclick="showFilter(this.value)" value="author">Author</button>
+			<button type="button" onclick="showFilter(this.value)" value="region">Region</button>		
 	
-	<fieldset data-role="controlgroup" data-mini="true">
-		<select name="filter" id="filter" data-theme="a" onchange="showFilter(this.value)">
-			<option data-placeholder="true" value="">Select a Filter</option>
-			<option value="topic">Subject</option>
-			<option value="genre">Genre</option>
-			<option value="lc_class">Call Number Location</option>
-			<option value="library">Library</option>
-			<option value="author">Author</option>
-			<option value="region">Region</option>
-		</select>
-	</fieldset>
-	<!--
-	<input type="submit" name="submit" value="submit" data-inline="true" data-theme="b"  data-iconpos="right" />
-	-->
-	<!--<div class="line-separator"></div>-->
+		</fieldset>
+		
+		<div id="filterInfo"></div>	
 	
-	<div id="filterInfo"></div>
-	
-	
-</form>
+	</form>
 
 </div>
 </div>
