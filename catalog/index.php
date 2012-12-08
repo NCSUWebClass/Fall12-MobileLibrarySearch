@@ -80,7 +80,7 @@ if ($query) {
     require_once('result-functions.php');
           ?>
     <script type="text/javascript" src="../lib/scripts/jquery.ias.js"></script>
-    <script type="text/javascript" src="../lib/scripts/jumptop.js"></script>	  
+    <!--<script type="text/javascript" src="../lib/scripts/jumptop.js"></script>//-->
     <script type="text/javascript">
       jQuery.ias({
 	container : '#content',

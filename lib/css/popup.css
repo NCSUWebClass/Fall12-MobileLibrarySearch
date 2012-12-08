@@ -23,3 +23,5 @@ border-top:1px solid #EEEEEE;
 border-bottom:1px solid #EEEEEE;
 
 }
+
+#scroll-top {position: fixed; bottom: 5px; right: 10px; display: block; z-index: 20;}
