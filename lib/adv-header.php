@@ -11,19 +11,16 @@
 <div class="refine">
 
 	<div id="appliedFilterInfo"></div>
-
+	<p style="text-decoration:overline underline; line-height:1.5em; color:red">Filter Groups:</p>
 	<form method="get">		
 		<fieldset data-role="controlgroup" data-mini="true">
-
 			<button type="button" onclick="showFilter(this.value)" value="topic">Subject</button>
 			<button type="button" onclick="showFilter(this.value)" value="genre">Genre</button>
 			<button type="button" onclick="showFilter(this.value)" value="lc_class">Call Num. Location</button>
 			<button type="button" onclick="showFilter(this.value)" value="library">Library</button>
 			<button type="button" onclick="showFilter(this.value)" value="author">Author</button>
 			<button type="button" onclick="showFilter(this.value)" value="region">Region</button>		
-
 		</fieldset>
-
 		<div id="filterInfo"></div>	
 
 	</form>

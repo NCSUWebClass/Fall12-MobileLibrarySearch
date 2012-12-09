@@ -6,7 +6,9 @@
 	
 		if(isset($xml->searchInfo->appliedFacet[0])) //only echo if there has been at least applied filter
 		{
-			echo '<div id="appliedFiltersBox" style="line-height:1.5em;font-family:Times;margin:4px;background-color:#D0D0D0;border:4px double gray;">';
+			echo '<div class="content-primary" data-role="content" role="main" ">';
+			echo '<p style="text-decoration:overline underline; line-height:1.5em; color:red">Applied Filters:</p>';
+			echo '<ul id="filter-list" data-role="listview" class="results ui-listview">';
 		}
 		
 		foreach($xml->searchInfo->appliedFacet as $facet)
@@ -31,11 +33,10 @@
 			$vtitle = $value->title;
 			if(strlen($vtitle) > 15)
 				$vtitle = substr($vtitle, 0, 15) . '..';
-			
-			
-			echo '<div style="margin:1px 5px">' . $facet->value . ' <a href=' . htmlentities($url) . '><img src="../lib/images/removeIcon.gif"></a></div>';
+			echo '<li class="ui-btn ui-btn-icon-left ui-li ui-btn-up-a" data-theme="a" style="margin-left:0px">';
+			echo '<a style="text-decoration:none; line-height:1.5em; color:red" href=' . htmlentities($url) . '><img src="../lib/images/removeIcon.gif"><span style="margin:1px 5px">' . $facet->value . ' </span></a></li>';
 		}
 		if(isset($xml->searchInfo->appliedFacet[0])) //only close div tag if there has been at least one applied filter
-			echo "</div>";
+			echo "</ul></div>";
 	}
 ?>

@@ -11,7 +11,9 @@
 			$cat = $facet->attributes()->id; //category
 			if(strcmp($cat,$filter) == 0) //if category == chosen filter
 			{
-				echo '<div style="width:195px;line-height:1.5em;overflow:auto;padding:0px;background-color:white;color:black;border:4px double red;">';
+				echo '<div class="content-primary" data-role="content" role="main" ">';
+				echo '<p style="text-decoration:overline underline; line-height:1.5em; color:red">Filters:</p>';
+				echo '<ul id="filter-list" data-role="listview" class="results ui-listview">';
 				foreach($facet->value as $value)
 				{
 					$href = $value->attributes()->href;
@@ -34,9 +36,10 @@
 					$vtitle = $value->title;
 					if(strlen($vtitle) > 15)
 						$vtitle = substr($vtitle, 0, 15) . '..';
-					echo '<a style="text-decoration:overline; color:black"class="nextpage" id="nextpage" target="_self" href="' . htmlentities($url) . '" onClick="recordOutboundLink(this, \'catalogResults\', \'load more\'); return false;"> '.$vtitle.' ('.$value->count.')</a><br>';
+					echo '<li class="ui-btn ui-btn-icon-left ui-li ui-btn-up-a" data-theme="a" style="margin-left:0px">';
+					echo '<a style="text-decoration:none; line-height:1.5em; color:black"class="nextpage" id="nextpage" target="_self" href="' . htmlentities($url) . '" onClick="recordOutboundLink(this, \'catalogResults\', \'load more\'); return false;"> '.$vtitle.' ('.$value->count.')</a></li>';
 				}
-				echo '</div>';
+				echo '</ul></div>';
 				echo "<div id='filler'></div>";
 			}
 		}

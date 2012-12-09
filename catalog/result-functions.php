@@ -92,9 +92,9 @@
 			   src="../lib/images/images.JPG" alt="book cover image"/></div>';
 		     echo '<div style="text-indent:10px;">';
 			if (strlen($isbn) > 1)
-			   echo '<div><span class="isbn"><span class="label">Call ID:</span><span class="value">' .$callNumber. '</span></span></div>';
+			   echo '<div><span class="isbn"><span class="label">Call Number:</span><span class="value">' .$callNumber. '</span></span></div>';
 			else
-			   echo '<div><span class="isbn"><span class="label">Call ID:</span> <span class="value"> Unknown </span></span></div>';
+			   echo '<div><span class="isbn"><span class="label">Call Number:</span> <span class="value"> Unknown </span></span></div>';
 			if($author != '') {
 			   //strim the title
 			   if(strlen($author) >20)
