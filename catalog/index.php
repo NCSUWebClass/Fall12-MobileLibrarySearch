@@ -96,7 +96,7 @@ if ($query) {
     </script>
       <?php
     //creating a content holder
-    echo '<div id="content" class="content" data-role="content"><ul id ="list" data-role="listview" data-filter="true" data-filter-theme="a" data-filter-placeholder="Search content" class="results">';
+    echo '<div id="content" class="content" data-role="content"><ul id ="list" data-role="listview" data-filter="true" data-filter-theme="a" data-filter-placeholder="Search within content" class="results">';
     //load the content of the first page
       $url = load($query, $ntk, $n, $offset, $count, $id, $xml,$previewID, $i);
     //load more content
