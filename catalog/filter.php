@@ -3,7 +3,7 @@
 	session_start();
 	$xml = simplexml_load_string($_SESSION['xml']);
 	$filter = $_GET['filter'];
-	echo '<h3 style="font-size:1.3em;color:white;margin:15px 5px">Select a sub-filter:</h3>';
+	echo '<p style="text-decoration:overline underline; font-size:0.1em;color:red"></p>';
 	if(isset($filter) && isset($xml))
 	{
 		foreach($xml->facet as $facet)
@@ -20,17 +20,17 @@
 					$start = strpos($href,$st) + 2;					
 					$end = strpos($href,$e,$start);
 					$n = substr($href, $start+1, ($end-1)-$start);					
-					
+
 					$_SESSION['n'] = urlencode($n);					
-					
+
 					$url = 'index.php?';
 					$url .= 'query=' . $_SESSION['query']; 
-			 
+
 					$url .= '&service=search';
 					$url .= '&N=' . $n;
 					$q = $_SESSION['query'];
 					$nt = $_SESSION['ntk'];
-					
+
 					$vtitle = $value->title;
 					if(strlen($vtitle) > 15)
 						$vtitle = substr($vtitle, 0, 15) . '..';

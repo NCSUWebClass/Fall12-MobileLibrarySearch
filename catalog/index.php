@@ -79,7 +79,7 @@ if ($query) {
     require_once('../lib/adv-header.php');
     require_once('result-functions.php');
           ?>
-    <script type="text/javascript" src="../lib/scripts/jquery.ias.js"></script>
+    <script type="text/javascript" src="../lib/scripts/jquery.ias.js"></script> 
     <script type="text/javascript">
       jQuery.ias({
 	container : '#content',
@@ -87,11 +87,11 @@ if ($query) {
 	pagination: '#loader',
 	next: '.nextpage',
 	loader: '<img src="../lib/images/loader.gif"/>',
-  onLoadItems: function(items) {
-    var o = $("#num-items");
-    var cur = Number(o.html());
-    o.html(cur + items.length);
-  }
+	onLoadItems: function(items){
+	  var o = $("#num-items");
+	  var cur = Number(o.html());
+	  o.html(cur + items.length);
+	}
       });
     </script>
       <?php
@@ -124,3 +124,4 @@ elseif(!$query && !$id) {
 }
 //*********************************************************************
 ?>
+

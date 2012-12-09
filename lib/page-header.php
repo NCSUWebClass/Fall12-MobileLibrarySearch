@@ -7,7 +7,6 @@
   <meta name="format-detection" content="telephone=no" />
   <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=0">
   <link rel="stylesheet" href="../lib/css/popup.css" type="text/css" />
-  <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
   <script type="text/javascript" src="../lib/scripts/results.js"></script>
   <!--<style> #content {padding-top : 45px;} #content form {position :fixed;top:55px;width:100%;z-index:10;}</style> //always show search bar-->
   <? if ($_SERVER['SERVER_NAME'] == "webdev2.lib.ncsu.edu") {?>
@@ -27,6 +26,7 @@
   <link rel="stylesheet" href="http://m.lib.ncsu.edu/lib/themes/ncsu-libraries-mobile-theme.min.css" />
   <link rel="stylesheet" href="http://m.lib.ncsu.edu/lib/ncsu-libraries-mobile.css" type="text/css">
 	<? } ?>
+	<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
 	<script>
 		$(document).bind("mobileinit", function(){
 			$.mobile.ajaxEnabled = false;
@@ -60,3 +60,4 @@
 </head>
 <body>
 	<div data-role="page" data-theme="a">
+

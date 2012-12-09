@@ -78,7 +78,7 @@
 		  //********************************************************
 		  echo '<div>';
 		     //$imgc = getimagesize("http://www.syndetics.com/index.aspx?isbn=' . $isbn . '/MC.GIF&amp;client=ncstateu");
-		     
+
 		     if (strlen($isbn)>1)  {
 			//if(!is_array($imgc))
 			   //echo '<div style="white-space:normal;float:left;"><img class="cover" width="60" height="90" 
