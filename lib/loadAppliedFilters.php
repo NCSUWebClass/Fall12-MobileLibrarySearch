@@ -7,7 +7,7 @@
 		if(isset($xml->searchInfo->appliedFacet[0])) //only echo if there has been at least applied filter
 		{
 			echo '<div class="content-primary" data-role="content" role="main" ">';
-			echo '<p style="text-decoration:overline underline; line-height:1.5em; color:red">Applied Filters:</p>';
+			echo '<br>';
 			echo '<ul id="filter-list" data-role="listview" class="results ui-listview">';
 		}
 		
