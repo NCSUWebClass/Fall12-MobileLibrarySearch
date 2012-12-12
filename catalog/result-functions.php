@@ -92,25 +92,17 @@
 		     echo '<div style="margin-left:0px;margin-bottom:0px; text-indent:10px;">';
 			if (strlen($isbn) > 1)
 			   echo '<div><span class="isbn"><span class="label">Call Number:</span><span class="value">' .$callNumber. '</span></span></div>';
-			else
-			   echo '<div><span class="isbn"><span class="label">Call Number:</span> <span class="value"> Unknown </span></span></div>';
 			if($author != '') {
 			   //strim the title
 			   if(strlen($author) >20)
 				 $author = substr($author, 0, 20) . '..';
 			   echo '<div><span class="author"><span class="label">Author:</span><span class="value">' . $author . '</span></span></div>';
 			}
-			else
-			   echo '<div><span class="author"><span class="label">Author:</span><span class="value"> Unknown </span></span></div>';
 			echo '<div class="formatpubbox">';
 			   if($format != '') 
 			      echo '<div><span class="label">Format: </span> <span class="value">' . $format . '</span></div>';
-			   else
-			      echo '<div><span class="label">Format: </span> <span class="value"> Unknown </span></div>';
 			   if($pubDate != '') 
 			      echo '<div><span class="label">Published:</span> <span class="value">' . $pubDate . '</span></div>';
-			   else
-			      echo '<div><span class="label">Published:</span> <span class="value"> Unknown </span></div>';
 			echo '</div>';
 		     echo '</div>';
 		  echo '</div>';

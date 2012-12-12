@@ -2,7 +2,7 @@
 
 <div data-role="header"  data-position="fixed">
 	<div onclick="location.href='./index.php';" style="cursor: pointer; position: absolute; height: 41px; width: 70px;"></div>
-	<a onclick="location.href='./index.php';"  data-transition="slide"  data-role="button"  >Home</a>
+	<a onclick="location.href='./index.php';"  data-transition="slide"  data-role="button"  >Start Over</a>
 
 <a href="#popupPanel" data-rel="popup" data-transition="slide"  data-role="button"  >Filter</a>
 
@@ -43,6 +43,6 @@ $(document).bind("mobileinit", function(){
   $.mobile.touchOverflowEnabled = true;
 });
 </script>
-	<h1><?= truncate($page_title, 32) ?></h1>
+	<h1><span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</span><?= truncate($page_title, 32) ?></h1>
 	
 </div>
