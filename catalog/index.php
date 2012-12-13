@@ -103,8 +103,9 @@ if ($query) {
       //$url = load($query, $ntk, $n, $offset, $count, $id, $xml);
     echo '</ul></div>';
     //link to load more content
-    if($url!=null)
-    echo '<div id="loader"><a name="nextpage" class="nextpage" id="nextpage" target="_self" href="' . htmlentities($url) . '" onClick="recordOutboundLink(this, \'catalogResults\', \'load more\'); return false;"><span style="text-align:center;font-size: 1.1em;line-height: 1em;">Next page...</span></a></div>';
+    if($url!=null) {
+    echo '<div id="loader"><a name="nextpage" class="nextpage" id="nextpage" target="_self" href="' . htmlentities($url) . '" onClick="recordOutboundLink(this, \'catalogResults\', \'load more\'); return false;"><span style="text-align:center;font-size: 1.1em;line-height: 1em;">Next page...</span></a></div><br><br>';
+    }
     require('../lib/result-footer.php');
     require_once('../lib/footer.php');
 

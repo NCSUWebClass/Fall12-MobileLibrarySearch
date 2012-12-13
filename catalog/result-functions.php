@@ -62,12 +62,12 @@
 		  //strim the title
 		  if(strlen($title) > 80)
 		     $title = substr($title, 0, 80) . '...';
-		  echo '<h5 style="margin:0px;font-size: 1.2em">' . $title . '</h5>';
+		  echo '<h5 style="margin:0px;font-size: 1.1em">' . $title . '</h5>';
 		  if(count($available) == 0) {
 		     if (preg_match('/(journal|magazine)/i', $format)) 
-			echo '<span style="margin-top:0px;font-size: .6em;color: #627ba1;">&#160;&#160;&#160;&#160;&#160;See full record.</span>';
+			echo '<span style="margin-top:0px;font-size: .7em;color: #627ba1;">&#160;&#160;&#160;&#160;&#160;See full record.</span>';
 		     else
-			echo '<span style="margin-top:0px;font-size: .6em;color: #627ba1;">&#160;&#160;&#160;&#160;&#160;Not available.</span>';
+			echo '<span style="margin-top:0px;font-size: .7em;color: #627ba1;">&#160;&#160;&#160;&#160;&#160;Not available.</span>';
 		  }
 		  else 
 		     echo '<span style="margin:0px;font-size: .6em;color: #627ba1;">&#160;&#160;&#160;&#160;&#160;' . count($available) . ' available.</span>';
@@ -92,17 +92,25 @@
 		     echo '<div style="margin-left:0px;margin-bottom:0px; text-indent:10px;">';
 			if (strlen($isbn) > 1)
 			   echo '<div><span class="isbn"><span class="label">Call Number:</span><span class="value">' .$callNumber. '</span></span></div>';
+			else
+			   echo '<div><span class="isbn"><span class="label">&#160;&#160;</span> <span class="value"></span></span></div>';
 			if($author != '') {
 			   //strim the title
 			   if(strlen($author) >20)
 				 $author = substr($author, 0, 20) . '..';
 			   echo '<div><span class="author"><span class="label">Author:</span><span class="value">' . $author . '</span></span></div>';
 			}
+			else
+			   echo '<div><span class="author"><span class="label">&#160;&#160;</span><span class="value"></span></span></div>';
 			echo '<div class="formatpubbox">';
 			   if($format != '') 
 			      echo '<div><span class="label">Format: </span> <span class="value">' . $format . '</span></div>';
+			   else
+			      echo '<div><span class="label">&#160;&#160;</span> <span class="value"></span></div>';
 			   if($pubDate != '') 
 			      echo '<div><span class="label">Published:</span> <span class="value">' . $pubDate . '</span></div>';
+			   else
+			      echo '<div><span class="label">&#160;&#160;</span> <span class="value"></span></div>';
 			echo '</div>';
 		     echo '</div>';
 		  echo '</div>';
